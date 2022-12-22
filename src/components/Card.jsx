@@ -1,7 +1,8 @@
 import styled from "styled-components"
+import {Link} from "react-router-dom"
 
 const CardStyle = styled.div`
-color: #ffffff; 
+color: #7b2828; 
 font-size: 18px; 
 font-weight: 400; 
 text-align: center;  
@@ -14,8 +15,6 @@ border-radius: 35px 0px 35px 0px;
 border: 2px solid #5878ca;
 height: 500px;
   width: 100%;
-
-
 `
 const H2Style = styled.h2 `
 color: black;  
@@ -33,7 +32,8 @@ border: 2px solid #5878ca;
 
 `
 const ImgStyle = styled.img`
-width : 35%;
+width :15%;
+
 `
 const H3Style= styled.h3 `
 color : black ;`
@@ -42,8 +42,10 @@ export default function Card(props) {
    return (
       <CardStyle>
           <button onClick={props.onClose}>X</button>
-         <H2Style>{props.name}</H2Style>
-         <ImgStyle  src={props.image} alt="" /> 
+          <Link to={`/detail/${props.detailId}`} >
+         <H2Style>{props.name}</H2Style> 
+         </Link>
+         <ImgStyle  src={props.image} alt={props.name} /> 
          <H3Style>{props.species}</H3Style>
          <H3Style>{props.gender}</H3Style>
        
