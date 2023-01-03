@@ -10,30 +10,26 @@ import Form from './components/Form'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import Encabezado from "./components/Encabezado"
+import Favorites from "./components/Favorites"
+
 
 
 const  AppStyle = styled.div `
-background-image: url(https://wallpaperaccess.com/full/5112240.jpg);
-background-position: center;
-background-size: cover;
-background-attachment: fixed;
-padding:  50px 50px 2000px; 
+background-image: url(https://i.pinimg.com/originals/75/05/b8/7505b82d6702785ce20ebedce92c63ad.png);
+   background-position: center;
+   background-size: cover;
+   background-attachment: fixed;
+padding:  0px 0px 2000px; 
 text-align: center;
-` 
-const CardsStyle = styled.div `
-background-image: url(https://p4.wallpaperbetter.com/wallpaper/588/5/300/rick-and-morty-toilets-hd-wallpaper-preview.jpg);
-background-position: center;
-background-size: cover;
-background-attachment: fixed;
-padding:  50px 50px 100px;
-`
+display:flex;
+flex-direction: row;
 
+` 
 
 export default function App () {
-   
-
 const [characters,setCharacters] = useState([]);
-const location = useLocation()
+const location = useLocation()   
 const [access,setAccess] = useState(false)
 let username = "brareyes115@gmail.com"
 let password= "115951";
@@ -68,18 +64,20 @@ useEffect(() => {
 
 return ( 
    <AppStyle>
-      <div>
-         {location.pathname === "/" ? null : <Navito onSearch={onSearch}></Navito> }
-            <Routes>
+         
+         {location.pathname === "nada" ? null : <Navito onSearch={onSearch}></Navito> }
+             <Routes>
                <Route path="/Home" element={
                   <Cards
                      characters={characters}
                      onClose={onClose} />}>Home
                </Route>
+               <Route path="/Favorites" element={<Favorites />}></Route>
                <Route path="/About" element={<About />}></Route>
-               <Route path="/detail/:detailId" element={<Details />}></Route>
+               <Route path="/detail/:id" element={<Details />}></Route> 
                <Route path= "/" element = {<Form login={login}/>}></Route>
                </Routes>
-      </div>
+
+
    
    </AppStyle>)}

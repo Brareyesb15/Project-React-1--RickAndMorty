@@ -5,11 +5,11 @@ import {useEffect} from "react";
 import { NavLink}    from "react-router-dom";
 
 export default function Details(props) {
-const {detailId} = useParams()
+const {id} = useParams()
 const [character , setCharacter] = useState({})
 
 useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
       .then((response) => response.json())
       .then((char) => {
         if (char.name) {
@@ -22,7 +22,7 @@ useEffect(() => {
         window.alert("No hay personajes con ese ID");
       });
     return setCharacter({});
-  }, [detailId]);
+  }, [id]);
 
   return (
     <div>

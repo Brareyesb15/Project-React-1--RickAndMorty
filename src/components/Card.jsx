@@ -1,48 +1,43 @@
+import React from "react"
 import styled from "styled-components"
 import {Link} from "react-router-dom"
+import { deleteFavs, addFavs } from "../Redux/action"
+import { connect } from "react-redux"
+import { useEffect } from "react"
 
 const CardStyle = styled.div`
-color: #7b2828; 
-font-size: 18px; 
-font-weight: 400; 
-text-align: center;  
-margin: 0 0 25px; 
-overflow: hidden; 
-padding: 20px; 
-border-radius: 35px 0px 35px 0px; 
--moz-border-radius: 35px 0px 35px 0px; 
--webkit-border-radius: 35px 0px 35px 0px; 
-border: 2px solid #5878ca;
-height: 500px;
-  width: 100%;
+
 `
-const H2Style = styled.h2 `
-color: black;  
-font-size: 18px; 
-font-weight: 400; 
-text-align: center;  
-margin: 0 0 25px; 
-overflow: hidden; 
-padding: 20px; 
-background-color: white;
-border-radius: 35px 0px 35px 0px; 
--moz-border-radius: 35px 0px 35px 0px; 
--webkit-border-radius: 35px 0px 35px 0px; 
-border: 2px solid #5878ca; 
+const H2Style = styled.h2 ` 
 
 `
 const ImgStyle = styled.img`
-width :15%;
 
 `
-const H3Style= styled.h3 `
-color : black ;`
+const H3Style= styled.h3 ``
 
-export default function Card(props) {
+export function Card(props) {
+   const [isFav, setIsFav] = React.useState(false)
+
+   const handleFavorite = () => {
+      if (isFav === true) {setIsFav(false); return props.deleteFavs(props.id)}
+      else {setIsFav(true); props.addFavs(props)}
+      }
+
+      useEffect(() => {
+         props.myFavorites.forEach((fav) => {
+            if (fav.id === props.id) {
+               setIsFav(true);
+            }
+         });
+      }, [props.myFavorites]);
+
    return (
+      
       <CardStyle>
+         {isFav ? (<button onClick={handleFavorite}>❤️</button>) : (<button onClick={handleFavorite}>🤍</button>)}
           <button onClick={props.onClose}>X</button>
-          <Link to={`/detail/${props.detailId}`} >
+          <Link to={`/detail/${props.id}`} >
          <H2Style>{props.name}</H2Style> 
          </Link>
          <ImgStyle  src={props.image} alt={props.name} /> 
@@ -53,3 +48,17 @@ export default function Card(props) {
       </CardStyle>
    );
 }
+
+export function mapDispatchToProps(dispatch) {
+   return {
+      addFavs : (props) => {dispatch(addFavs(props))},
+      deleteFavs : (id) => {dispatch(deleteFavs(id))}
+   }
+}
+export function mapStateToProps(state) {
+   return {
+      myFavorites : state.myFavorites
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

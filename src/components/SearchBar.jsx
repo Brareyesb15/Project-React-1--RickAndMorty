@@ -3,6 +3,9 @@ import { useState } from "react";
 import styled from "styled-components";
 
 
+const BarStyled = styled.a`
+float:left;`
+
 const ButtonStyle = styled.button `
  background-color: #72e1f0;
     color: #050505;
@@ -17,15 +20,16 @@ font-size : 5px;
 
 export default function SearchBar(props) {
    const [character, setCharacter] = useState("");
-   const cambiarCharacter = (e) =>{
-      const{value}= e.target;
-      setCharacter(value)
 
+   function cambiarCharacter (e) {
+      setCharacter(e.target.value)
    }
-   return ( // imput es elemento como h1 ,, todo lo que este adentro atributo como type /search // onclick es un atributo button // onSearch es un metodo 
-      <div>
-         <input type="search" name="search" id="" onChange={cambiarCharacter}></input>  
+   
+   return ( 
+      <BarStyled>
+      <input type="search" name="search" id="" onChange={cambiarCharacter}></input>  
+      <br></br>
       <ButtonStyle onClick={() => props.onSearch(character)}>Agregar</ButtonStyle> 
-      </div>
+      </BarStyled>
    );
 }
