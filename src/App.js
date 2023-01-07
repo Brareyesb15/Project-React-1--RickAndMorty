@@ -46,11 +46,15 @@ useEffect(() => {
    !access && navigate('/');
 }, [access]);
 
-  function onSearch(characters) {
-    fetch(`https://rickandmortyapi.com/api/character/${characters}`)
+  function onSearch(num) {
+    fetch(`https://rickandmortyapi.com/api/character/${num}`)
        .then((response) => response.json())
        .then((data) => {
-          if (data.name) {
+          if(characters.find(function(elemento) {return elemento.id == num? true : false}))   {
+            window.alert ("Personaje ya encontrado")
+     
+          }
+          else if (data.name ) {
              setCharacters((oldChars) => [...oldChars, data]);
           } else {
              window.alert('No hay personajes con ese ID');
@@ -65,7 +69,7 @@ useEffect(() => {
 return ( 
    <AppStyle>
          
-         {location.pathname === "nada" ? null : <Navito onSearch={onSearch}></Navito> }
+         {location.pathname === "/" ? null : <Navito onSearch={onSearch}></Navito> }
              <Routes>
                <Route path="/Home" element={
                   <Cards

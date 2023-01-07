@@ -1,9 +1,9 @@
-import { ADD_FAVS, DELETE_FAVS } from "./types"
+import { ADD_FAVS, DELETE_FAVS, ORDER, FILTER,MOSTRAR} from "./types"
 
-export function addFavs(id) {
+export function addFavs(props) {
     return {
         type: ADD_FAVS,
-        payload: id
+        payload: props
     }
 }
 
@@ -14,3 +14,22 @@ export function deleteFavs(id) {
     }
 }
 
+export function filterCards(gender) {
+    return {
+        type: FILTER,
+        payload: gender
+    }
+}
+
+export function orderCards(orden){
+    return {
+        type: ORDER,
+        payload: orden
+    }
+}
+
+export function mostrarTodos(){
+    return {
+        type: MOSTRAR
+    } 
+}

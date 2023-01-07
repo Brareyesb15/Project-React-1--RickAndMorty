@@ -25,13 +25,13 @@ export function Card(props) {
       }
 
       useEffect(() => {
-         props.myFavorites.forEach((fav) => {
+         props.allCharacters.forEach((fav) => {
             if (fav.id === props.id) {
                setIsFav(true);
             }
          });
-      }, [props.myFavorites]);
-
+      }, [props.allCharacters]);
+   
    return (
       
       <CardStyle>
@@ -57,7 +57,8 @@ export function mapDispatchToProps(dispatch) {
 }
 export function mapStateToProps(state) {
    return {
-      myFavorites : state.myFavorites
+      myFavorites : state.myFavorites,
+      allCharacters: state.allCharacters
    }
 }
 
