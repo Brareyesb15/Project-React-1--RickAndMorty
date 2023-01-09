@@ -3,7 +3,34 @@ import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import { filterCards, mostrarTodos } from "../Redux/action";
 import { orderCards} from "../Redux/action";
+import styled from "styled-components";
 
+const Contain = styled.div `
+ display:flex;
+ flex-wrap: wrap;
+ flex-direction: column;
+ padding: 5px;
+ `
+const FavStyled = styled.div `
+display:flex;
+ flex-wrap: wrap;
+ flex-direction: row;
+
+ `
+ const Cont = styled.div`
+ position: relative;
+ left: 20%;
+ 
+ width: 85%;
+ color: white;
+ font-size: 25;
+ 
+ `
+ const Cont1 = styled.div`
+ width:50%;
+ `
+const Cont2 = styled.div`
+width: 50%;`
 
 export function Favorites(props) {
     const dispatch = useDispatch();
@@ -29,8 +56,8 @@ export function Favorites(props) {
     else dispatch(filterCards(e.target.value))
      }
 
-
     return (
+        <Cont>
         <div>
             <div>
             <select onChange= {ordenar}>
@@ -45,16 +72,26 @@ export function Favorites(props) {
                 <option value="Unknown" >Desconocido</option>
             </select>
             </div>
-         
-   {props.myFavorites.map((t,i) => (<div key={i}>  
-         <h2>{t.name}</h2> 
-         <img  src={t.image} alt={t.name} /> 
-         <h3>{t.species}</h3>
-         <h3>{t.gender}</h3>
+         <Contain>
+   {props.myFavorites.map((t,i) => (<FavStyled key={i}>  
+        <Cont1>
+            <h2>{t.name}</h2> 
+            <h3>Especie: {t.species}</h3>
+            <h3>Genero: {t.gender}</h3>
+
+
+
+        </Cont1>
+        <Cont2>
+        <img  src={t.image} alt={t.name} />   
+        </Cont2>
       
            
-        </div>))}        
+        </FavStyled>
+        ))} 
+        </Contain>       
    </div>
+   </Cont>
 
 
     )

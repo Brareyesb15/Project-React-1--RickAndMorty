@@ -6,14 +6,28 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = styled.div`
-background-color: black;
-width: 300px;
-height: 5000px;
-
+position: fixed;
+width: 25%;
+height: 100%;
 float:left;
+font-size: 25px;
+color: white;
+ display:flex;
+ flex-wrap: wrap;
+ flex-direction: row;
+align-items: center;
+padding: 30px;
+
 `
+const Cont = styled.div `
+
+
+
+`
+
 const NavLinkStyled = styled(NavLink)`
 float:left;
+color: white;
 `
 
 
@@ -22,7 +36,8 @@ export default function Navito(props) {
    const location = useLocation()
 
     return (
-            <NavBar>
+       <NavBar>
+          <Cont>
                 <NavLinkStyled to={"/Home"}>Home</NavLinkStyled>
                 <br></br>
                 <NavLinkStyled to ={"/Favorites"}>Favoritos</NavLinkStyled>
@@ -32,8 +47,10 @@ export default function Navito(props) {
                 {location.pathname !== "/" ? <NavLinkStyled   to={"/"}>Login</NavLinkStyled> : null}
                 <br></br>
                 <SearchBar onSearch={(props.onSearch)}/>
+    
 
-               
+            </Cont> 
+      
            </NavBar>
           
     

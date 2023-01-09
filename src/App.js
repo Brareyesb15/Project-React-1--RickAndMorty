@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Encabezado from "./components/Encabezado"
 import Favorites from "./components/Favorites"
+import Home from './components/Home'
 
 
 
@@ -21,11 +22,11 @@ background-image: url(https://i.pinimg.com/originals/75/05/b8/7505b82d6702785ce2
    background-size: cover;
    background-attachment: fixed;
 padding:  0px 0px 2000px; 
-text-align: center;
 display:flex;
 flex-direction: row;
 
 ` 
+
 
 export default function App () {
 const [characters,setCharacters] = useState([]);
@@ -68,20 +69,22 @@ useEffect(() => {
 
 return ( 
    <AppStyle>
-         
+     
          {location.pathname === "/" ? null : <Navito onSearch={onSearch}></Navito> }
+      
+       
              <Routes>
                <Route path="/Home" element={
-                  <Cards
+                  <Home
                      characters={characters}
-                     onClose={onClose} />}>Home
+                     onClose={onClose} />}>
                </Route>
                <Route path="/Favorites" element={<Favorites />}></Route>
                <Route path="/About" element={<About />}></Route>
                <Route path="/detail/:id" element={<Details />}></Route> 
                <Route path= "/" element = {<Form login={login}/>}></Route>
                </Routes>
-
+         
 
    
    </AppStyle>)}

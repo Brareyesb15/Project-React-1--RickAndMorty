@@ -1,4 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+
+const FormCentrado = styled.div `
+border: 3px;
+background-color: white ;
+display: flex;
+align-items: center;
+justify-content: center;
+`
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
@@ -35,7 +45,7 @@ export default function Form (props) {
 
 
     return (
-    <div>
+    <FormCentrado>
         <form onSubmit={handleSubmit}>
             <label>Username:</label>
              <input   
@@ -59,6 +69,6 @@ export default function Form (props) {
               <button type="submit">Login</button>
               </form>
         
-    </div>
+    </FormCentrado>
     )
 }

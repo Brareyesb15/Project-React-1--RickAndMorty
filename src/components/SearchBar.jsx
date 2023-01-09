@@ -4,17 +4,21 @@ import styled from "styled-components";
 
 
 const BarStyled = styled.a`
-float:left;`
+float:left;
+`
 
 const ButtonStyle = styled.button `
- background-color: #72e1f0;
+ background-color: white;
     color: #050505;
-    font-size: 10px;
+    font-size: 50%;
     border-radius: 10px;
     padding: 10px 20px;
+    width: 90%;
 `
-const inputStyle = styled.input `
-font-size : 5px;
+const InputStyle = styled.input `
+width: 90%;
+size: 100%;
+
 
 `
 
@@ -27,7 +31,7 @@ export default function SearchBar(props) {
    
    return ( 
       <BarStyled>
-      <input type="search" name="search" id="" onChange={cambiarCharacter}></input>  
+      <InputStyle type="search" name="search" id="" onChange={cambiarCharacter}></InputStyle>  
       <br></br>
       <ButtonStyle onClick={() => props.onSearch(character)}>Agregar</ButtonStyle> 
       </BarStyled>

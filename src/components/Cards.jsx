@@ -3,10 +3,13 @@ import Card from './Card';
 import styled from 'styled-components';
 
 const DivCards = styled.div `
+align-items: stretch;
  display:flex;
  flex-wrap: wrap;
  flex-direction: row;
+align-items: center;
  padding: 5px;
+
   
 `
 
